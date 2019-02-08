@@ -1,11 +1,13 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   ## Database authenticatable
+  field :nickname,           type: String
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
 
@@ -17,7 +19,7 @@ class User
   field :remember_created_at, type: Time
 
   ## Trackable
-  # field :sign_in_count,      type: Integer, default: 0
+  field :sign_in_count,      type: Integer, default: 0
   # field :current_sign_in_at, type: Time
   # field :last_sign_in_at,    type: Time
   # field :current_sign_in_ip, type: String
@@ -33,4 +35,7 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
+  #
+
+  has_many :books
 end
