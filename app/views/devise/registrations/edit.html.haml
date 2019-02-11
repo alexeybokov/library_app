@@ -1,0 +1,30 @@
+.wrapper.fadeIn
+  #formContent
+    %h2
+      Edit #{resource_name.to_s.humanize}
+    / Icon
+    .fadeIn.first
+      = image_tag('avatar.png', class: 'icon')
+    / Login Form
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      = devise_error_messages!
+      .field#nickname.fadeIn.second
+        = f.text_field :nickname, autofocus: true, placeholder: :'Nickname', autocomplete: "Nickname"
+      .field#email.fadeIn.third
+        = f.email_field :email, autofocus: true, autocomplete: "Email"
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %div
+          Currently waiting confirmation for: #{resource.unconfirmed_email}
+      .field#password.fadeIn.fourth
+        = f.password_field :password, placeholder: :"Password (leave blank if you don't want to change it)", autocomplete: "new-password"
+      .field#password_confirmation.fadeIn.fifth
+        = f.password_field :password_confirmation, placeholder: :'Password confirmation', autocomplete: "new-password"
+      .field#current_password.fadeIn.fifth
+        = f.password_field :current_password, placeholder: :'We need your current password to confirm your changes', autocomplete: "current-password"
+      .actions.fadeIn.sixth
+        = f.submit "Update"
+    #formFooter.underlineHover.fadeIn.sixth
+      %h3 Cancel my account
+      %p
+        Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+      = link_to "Back", :back
