@@ -1,4 +1,53 @@
 .title
-  ="Library"
-  - if user_signed_in?
-    = link_to ('log out'), destroy_user_session_path, method: :delete
+  %h3
+    ="Books"
+  %h3
+    - if user_signed_in?
+      = link_to ('log out'), destroy_user_session_path, method: :delete
+    = link_to ('Edit Profile'), edit_user_registration_path
+
+.top_books
+  %h2 Top 5 Books
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th Book
+        %th Author
+        %th{ colspan: :'2' } Status
+    %tbody
+      - @top_books.each do |book|
+        %tr
+          %td
+            = book.title
+          %td
+            = book.author
+          - if book.status?
+            %td In
+            %td
+              %input{:type => "checkbox"}
+          -else
+            %td Out
+
+.book_list
+  %h2 All Books
+  %table.table.table-boarded
+    %thead
+      %tr
+        %th Book
+        %th Author
+        %th{ colspan: :'2' } Status
+    %tbody
+      - @books.each do |book|
+        %tr
+          %td
+            = book.title
+          %td
+            = book.author
+          - if book.status?
+            %td In
+            %td
+              %input{:type => "checkbox"}
+          -else
+            %td Out
+-##paginate
+  = paginate @comments

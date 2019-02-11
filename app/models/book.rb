@@ -20,4 +20,6 @@ class Book
   validates :title,   presence: true
   validates :author,  presence: true
   validates :description, presence: true
+
+  scope :newest, -> { order_by(created_at: :desc).limit(5) }
 end

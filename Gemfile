@@ -3,13 +3,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.0'
 
-gem 'devise'
-gem 'mongoid', '~> 7.0'
 gem 'bootstrap', '~> 4.2.1'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+gem 'devise'
+gem 'draper'
 gem 'haml-rails', '~> 1.0'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-gem 'mini_magick'
+gem 'jquery-rails'
 gem 'kaminari'
+gem 'mini_magick'
+gem 'mongoid', '~> 7.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
