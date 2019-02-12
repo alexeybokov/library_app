@@ -38,4 +38,5 @@ class User
   #
 
   has_many :books
+  has_many :histories
 end

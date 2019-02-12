@@ -13,9 +13,9 @@ class Book
   field :rating,          type: Float,    default: 0.0
 
   belongs_to  :user
-  # has_many    :likes,     dependent: :destroy
+  has_many    :likes, dependent: :destroy
   has_many    :comments, dependent: :destroy
-  # has_many    :history,   dependent: :destroy
+  has_many    :history, dependent: :destroy
 
   validates :title,   presence: true
   validates :author,  presence: true
