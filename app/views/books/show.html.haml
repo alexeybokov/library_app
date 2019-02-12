@@ -1,0 +1,67 @@
+.book_title
+  = @book.title
+
+.rating_container
+  .row
+    .rating
+      %input#star5{:name => "rating", :type => "radio", :value => "5"}/
+      %label{:for => "star5", :title => "Meh"} 5 stars
+      %input#star4{:name => "rating", :type => "radio", :value => "4"}/
+      %label{:for => "star4", :title => "Kinda bad"} 4 stars
+      %input#star3{:name => "rating", :type => "radio", :value => "3"}/
+      %label{:for => "star3", :title => "Kinda bad"} 3 stars
+      %input#star2{:name => "rating", :type => "radio", :value => "2"}/
+      %label{:for => "star2", :title => "Sucks big tim"} 2 stars
+      %input#star1{:name => "rating", :type => "radio", :value => "1"}/
+      %label{:for => "star1", :title => "Sucks big time"} 1 star
+
+    .likes_counter
+      = "Likes: #{@book.likes_count}"
+
+%button.btn.btn-success{:type => "button", class: "take_button"} Take
+%br/
+%br/
+
+.row
+  .col-6
+    - if @book.cover?
+      = image_tag @book.cover.thumb.url, class: 'book-cover'
+    - else
+      = image_tag('cover.jpg', class: 'cover-default')
+  .col-6.description
+    = @book.description
+
+#comments
+  - if @book.comments.empty?
+    .text-center
+      %p
+        No Comments yet!
+  - else
+    .row
+      .col-12.comments_list
+        - @book.comments.each do |comment|
+          = comment.user.nickname
+          = comment.created_at.strftime('%v')
+          = comment.created_at.strftime('%H:%M:%S')
+          %br/
+          = comment.body
+          %br/
+#history
+  - if @book.history.empty?
+    .text-center
+      %p
+        No History yet!
+  - else
+    .row
+      %table.w-100.text-center
+        %thead
+          %tr
+            %th{ colspan: :'3'} History
+          %tr
+            %th
+              Taken By
+            %th
+              Taken In
+            %th
+              Returned In
+          =render @book.history.order_by(taken_in: :desc)

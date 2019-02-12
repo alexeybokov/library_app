@@ -18,15 +18,18 @@
       - @top_books.each do |book|
         %tr
           %td
-            = book.title
+            %a{:href => book_path(book)}
+              = book.title
           %td
             = book.author
           - if book.status?
             %td In
             %td
-              %input{:type => "checkbox"}
+              %input{:checked => "checked", :type => "checkbox"}
           -else
             %td Out
+            %td
+              %input{:type => "checkbox"}
 
 .book_list
   %h2 All Books
@@ -46,8 +49,11 @@
           - if book.status?
             %td In
             %td
-              %input{:type => "checkbox"}
+              %input{:checked => "checked", :type => "checkbox"}
           -else
             %td Out
+            %td
+              %input{:type => "checkbox"}
+
 -##paginate
   = paginate @comments

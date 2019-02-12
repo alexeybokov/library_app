@@ -1,0 +1,99 @@
+// Place all the styles related to the Books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.book_title {
+  font-size: 50px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.rating_container {
+  margin-left: 50px;
+  margin-top: 25px;
+  float:left;
+  display: inline-block;
+}
+
+.rating:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+  clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:300%;
+  color:#ddd;
+}
+
+.rating:not(:checked) > label:before {
+  content: '★ ';
+}
+
+.rating > input:checked ~ label {
+  color: red;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #a8a8a8;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: gold;
+}
+
+.rating > label:active {
+  position:relative;
+  top:2px;
+  left:2px;
+}
+
+.likes_counter {
+  display: inline-block;
+  margin-top: 15px;
+  margin-left: 25px;
+  font-size: 30px;
+}
+
+.take_button {
+  //display: inline-block;
+  height: 50px;
+  width: 100px;
+  //float: left;
+  margin-left: 45%;
+  margin-top: 35px;
+  font-size: 25px !important;
+}
+
+.cover-default {
+  display: inline-block;
+  max-height: 600px;
+  max-width: 375px;
+  margin-left: 20px;
+}
+.description {
+  font-size: 23px;
+  word-wrap: break-word;
+}
+
+#comments {
+  margin-left: 25px;
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+#history {
+  margin-top: 15px;
+  font-size: 20px;
+}
+

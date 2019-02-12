@@ -1,0 +1,11 @@
+%tr
+  %td
+    %medium
+      =history.user.nickname
+  %td
+    %medium
+      =history.taken_in.strftime('%v')
+  %td
+    %medium
+      -if history.returned_in.present?
+        =history.returned_in.strftime('%v')
