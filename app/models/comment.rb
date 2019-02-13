@@ -8,4 +8,6 @@ class Comment
   belongs_to  :book
 
   validates :body, presence: true
+
+  paginates_per 5
 end
