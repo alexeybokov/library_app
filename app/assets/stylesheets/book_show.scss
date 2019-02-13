@@ -66,14 +66,21 @@
 }
 
 .take_button {
-  //display: inline-block;
   height: 50px;
   width: 100px;
-  //float: left;
+  margin-left: 440px;
+  margin-top: 35px;
+  font-size: 25px !important;
+}
+
+.status_button {
+  height: 50px;
+  width: 100px;
   margin-left: 45%;
   margin-top: 35px;
   font-size: 25px !important;
 }
+
 
 .cover-default {
   display: inline-block;
@@ -87,13 +94,21 @@
 }
 
 #comments {
-  margin-left: 25px;
-  margin-top: 15px;
+  margin: 15px 25px 0 25px;
   font-size: 20px;
 }
 
 #history {
-  margin-top: 15px;
-  font-size: 20px;
+  margin: 15px 25px 0 20px;
+  font-size: 25px;
 }
 
+.comment_date, .comment_user,
+.comment_body, .history_user,
+.history_taken, .history_returned {
+  border-bottom: solid 1px;
+}
+
+.history_title {
+  border-bottom: solid 1px;
+}
