@@ -18,7 +18,13 @@
     .likes_counter
       = "Likes: #{@book.likes_count}"
 
-%button.btn.btn-success{:type => "button", class: "take_button"} Take
+- if @book.status?
+  =link_to take_book_path(id: @book.id), method: :put, remote: true do
+    %button.btn.btn-success{:type => "button", class: "take_button"} Take
+- else
+  %button.btn.btn-danger{:type => "button", class: "status_button"} Taken
+
+
 %br/
 %br/
 
@@ -32,36 +38,43 @@
     = @book.description
 
 #comments
+  %table.w-100.text-center
+    %thead
+      %tr
+        %th{ colspan: :'3'} Comments
   - if @book.comments.empty?
     .text-center
       %p
         No Comments yet!
   - else
     .row
-      .col-12.comments_list
-        - @book.comments.each do |comment|
-          = comment.user.nickname
+      - @book.comments.each do |comment|
+        .comment_date.col-2.p-0.text-center
           = comment.created_at.strftime('%v')
           = comment.created_at.strftime('%H:%M:%S')
-          %br/
+        .comment_user.col-2.p-0.text-center
+          = comment.user.nickname
+        .comment_body.col-8.p-0
           = comment.body
-          %br/
+= paginate @comments
+
 #history
+  %table.w-100.text-center
+    %thead
+      %tr
+        %th.history_title{ colspan: :'3'} History
   - if @book.history.empty?
     .text-center
       %p
         No History yet!
   - else
-    .row
-      %table.w-100.text-center
-        %thead
-          %tr
-            %th{ colspan: :'3'} History
-          %tr
-            %th
-              Taken By
-            %th
-              Taken In
-            %th
-              Returned In
-          =render @book.history.order_by(taken_in: :desc)
+    %table.w-100.text-center
+      %thead
+        %tr
+          %th
+            Taken By
+          %th
+            Taken In
+          %th
+            Returned In
+      =render @book.history.order_by(taken_in: :desc)

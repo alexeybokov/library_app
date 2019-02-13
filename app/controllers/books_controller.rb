@@ -13,17 +13,21 @@ class BooksController < ApplicationController
   def edit; end
 
   def show
+    @comments = Comment.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def take
-    @book.history.create
+    @book.history.create!(user: current_user, taken_in: Time.now)
     @book.update(status: false)
   end
 
-  def like
-
+  def return
+    @history = @book.history.where(user: current_user, returned_in: nil)
+    @history.update(returned_in: Time.now)
+    @book.update(status: true)
   end
 
+  def like; end
 
   private
 

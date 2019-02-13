@@ -22,4 +22,8 @@ class Book
   validates :description, presence: true
 
   scope :newest, -> { order_by(created_at: :desc).limit(5) }
+
+  def taken_by(user_id)
+    histories.where(user_id: user_id, return: nil).exists?
+  end
 end
