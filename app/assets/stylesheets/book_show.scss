@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
 .book_title {
   font-size: 50px;
   margin-top: 20px;
@@ -65,7 +67,7 @@
   font-size: 30px;
 }
 
-.take_button {
+.take_button, .return_button {
   height: 50px;
   width: 100px;
   margin-left: 440px;
@@ -111,4 +113,8 @@
 
 .history_title {
   border-bottom: solid 1px;
+}
+
+.comment_link {
+  font-size: 28px;
 }

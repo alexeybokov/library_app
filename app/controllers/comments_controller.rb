@@ -9,6 +9,10 @@ class CommentsController < ApplicationController
     @comment = @book.comments.new
   end
 
+  def create
+    @book.comments.create(comment_params).merge(user: current_user)
+  end
+
   private
 
   def find_book
@@ -16,6 +20,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :image_id)
+    params.require(:comment).permit(:body, :book_id)
   end
 end

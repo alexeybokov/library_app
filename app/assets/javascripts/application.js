@@ -12,11 +12,9 @@
 //
 
 
-// = require jquery3
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-
-setTimeout(function(){
-    $('.alert').remove();
-}, 5000);

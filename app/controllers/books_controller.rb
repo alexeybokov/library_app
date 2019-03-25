@@ -1,13 +1,26 @@
 class BooksController < ApplicationController
   # respond_to :html, :js
-  before_action :find_book
+  before_action :find_book, only: %i[show]
 
   def new
     @book = Book.new
   end
 
   def create
-    @book = Book.new(book_params)
+    # @book = Book.new(book_params)
+    @book = current_user.books.build(book_params)
+
+    if @book.save
+      flash[:notice] = 'Book Successful Create!'
+      redirect_to book_path(@book)
+    else
+      respond_to do |format|
+        format.js { render 'books/create_errors' }
+      end
+      # flash[:alert] = @book.errors.full_messages.to_sentence
+      # flash[:alert] = 'Image not save'
+      # render 'books/modal'
+    end
   end
 
   def edit; end

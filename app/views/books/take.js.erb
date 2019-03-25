@@ -1,2 +1,5 @@
 $('.take_button').html('<%= j link_to("<i class=\"take_button\"></i>".html_safe, take_book_path(id: @book.id), method: :put, remote: true) %>')
+
 $('.likes_count').html('<%= @book.reload.likes_count %>')
+//$('#history').html('<%= render @book.history.order_by(taken_in: :desc)%>')
+
